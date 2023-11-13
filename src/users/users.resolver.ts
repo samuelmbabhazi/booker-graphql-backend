@@ -13,7 +13,7 @@ export class UsersResolver {
     return this.usersService.create(createUserData);
   }
 
-  @Query(() => User, { name: 'user' })
+  @Query(() => User)
   async getUser(@Args() getUserArgs: GetUserArgs) {
     return this.usersService.getUser(getUserArgs);
   }

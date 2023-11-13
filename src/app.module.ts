@@ -7,6 +7,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import * as Joi from 'joi';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -19,7 +20,11 @@ import * as Joi from 'joi';
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      playground: true,
       autoSchemaFile: true,
+      sortSchema: true,
+      introspection: true,
+      persistedQueries: false,
     }),
     UsersModule,
     DatabaseModule,

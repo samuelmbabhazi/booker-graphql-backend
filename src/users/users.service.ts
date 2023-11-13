@@ -16,6 +16,7 @@ export class UsersService {
       ...createUserData,
       password: await bcrypt.hash(createUserData.password, 10),
     });
+    return this.toModel(userDocument);
   }
 
   private async validateCreateUserData(createUserData: CreateUserInput) {
