@@ -8,6 +8,8 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import * as Joi from 'joi';
 import { join } from 'path';
+import { AuthModule } from './auth/auth.module';
+import { BookmarksModule } from './bookmarks/bookmarks.module';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { join } from 'path';
       validationSchema: Joi.object({
         PORT: Joi.number().required(),
         MONGODB_URI: Joi.string().required(),
+        JWT_EXPIRATION: Joi.number().required(),
+        JWT_SECRET: Joi.string().required(),
       }),
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -28,6 +32,8 @@ import { join } from 'path';
     }),
     UsersModule,
     DatabaseModule,
+    AuthModule,
+    BookmarksModule,
   ],
   controllers: [],
   providers: [AppService],
